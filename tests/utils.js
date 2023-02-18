@@ -2,13 +2,10 @@ const fs = require("fs");
 require("dotenv").config();
 
 const closeCookiesAlert = async (page) => {
-  await page
-    .getByRole("cell", {
-      name: "Our website makes use of cookies (sadly not the delicious, crumbly ones) and similar technologies. If you accept them, we share information with our partners for social media, advertising and analysis. Please let us know which cookies we can use. Manage Cookies Accept All",
-    })
-    .getByText("Accept All")
-    .click();
-  await page.waitForTimeout(1000);
+  const concentCookiesButton = page.locator(
+    "#cookiedialogcontent .RightButton .BigButtonText"
+  );
+  await concentCookiesButton?.click();
 };
 
 const typeCredentials = async (page) => {
